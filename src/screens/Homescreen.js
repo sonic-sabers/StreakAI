@@ -1,45 +1,27 @@
 import React,
 {
-	Component,
-	useState,
-	useEffect,
-	useRef
+	useState
 } from 'react';
 import {
 	StyleSheet,
-	Button,
-	Image,
 	Text,
 	TouchableOpacity,
 	View,
-	TextInput,
 	ScrollView,
-	KeyboardAvoidingView,
 	SafeAreaView,
-	ImageBackground,
-	FlatList,
-	ViewPropTypes,
-	Switch,
+
 	Dimensions,
 } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
+
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../constants';
-import Entypo from 'react-native-vector-icons/Entypo';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Hstack } from '../components';
 import { BarChart } from 'react-native-charts-wrapper';
 import {
 	LineChart,
-	// BarChart,
-	PieChart,
-	ProgressChart,
-	ContributionGraph,
-	StackedBarChart
 } from "react-native-chart-kit";
-// import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width - 60;
 
 const data = {
@@ -73,7 +55,12 @@ const chartConfig2 = {
 	useShadowColorFromDataset: false // optional
 };
 export const Myheader = (props) => {
+	const navigation = useNavigation();
+	function Mydrawer() {
+		navigation.dispatch(DrawerActions.openDrawer());
+	}
 	return (
+
 		<View>
 			<Hstack
 				centered
@@ -82,7 +69,7 @@ export const Myheader = (props) => {
 					paddingHorizontal: 10,
 					marginTop: 15,
 				}} >
-				<TouchableOpacity>
+				<TouchableOpacity  onPress={() => Mydrawer()}>
 					<MaterialCommunityIcons name='menu' size={30} color={props.color ? props.color : colors.white2} />
 				</TouchableOpacity>
 				<Text
@@ -94,7 +81,7 @@ export const Myheader = (props) => {
 				</TouchableOpacity>
 			</Hstack>
 		</View>
-	)
+	);
 }
 
 const Datenicon = () => {
@@ -115,20 +102,23 @@ const Datenicon = () => {
 					</Text>
 				</View>
 				<Hstack>
-					<MaterialCommunityIcons
-						name='arrow-left'
-						size={30}
-						style={{
-							// marginLeft: 10,
-						}}
-						color={colors.black}
-					/>
+					<TouchableOpacity>
+						<MaterialCommunityIcons
+							name='arrow-left'
+							size={30}
+							style={{
+								// marginLeft: 10,
+							}}
+							color={colors.black}
+						/>
+					</TouchableOpacity>
+					<TouchableOpacity>
+						<MaterialCommunityIcons
+							style={{
+								marginLeft: 10,
+							}} name='arrow-right' size={30} color={colors.white2} />
 
-					<MaterialCommunityIcons
-						style={{
-							marginLeft: 10,
-						}} name='arrow-right' size={30} color={colors.white2} />
-
+					</TouchableOpacity>
 				</Hstack>
 			</Hstack>
 
@@ -393,7 +383,7 @@ const Realtimegraph = () => {
 			<View style={styles.container}>
 				<BarChart
 					data={data}
-					width={screenWidth}
+					width={screenWidth - 60}
 					height={220}
 					yAxisLabel="$"
 					chartConfig={chartConfig2}
@@ -429,13 +419,10 @@ export default function Homescreen() {
 		<SafeAreaView style={{
 			flex: 1,
 			backgroundColor: colors.primary,
-
 		}}>
 			<ScrollView contentContainerStyle={{
 				flex: 1,
 			}}>
-
-
 				<View style={{
 					flex: 1,
 				}}>

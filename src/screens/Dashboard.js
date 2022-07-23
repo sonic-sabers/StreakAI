@@ -1,43 +1,22 @@
 import React,
 {
-  Component,
-  useState,
-  useEffect,
-  useRef
+
 } from 'react';
 import {
   StyleSheet,
-  Button,
-  Image,
-  Text,
-  TouchableOpacity,
   View,
-  TextInput,
-  ScrollView,
-  KeyboardAvoidingView,
+  Text,
+
   SafeAreaView,
-  ImageBackground,
-  FlatList,
-  ViewPropTypes,
-  Switch,
+  ScrollView,
   Dimensions,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../constants';
-import Entypo from 'react-native-vector-icons/Entypo';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Myheader } from './Homescreen';
 import Hstack from './../components/Hstack';
 import {
   LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
 } from "react-native-chart-kit";
 const screenWidth = Dimensions.get("window").width - 60;
 import Pie from 'react-native-pie'
@@ -150,7 +129,6 @@ const Usersessions = () => {
   return (
     <Hstack centered between styles={{
       marginTop: 30,
-      // backgroundColor: '#7bc135'
     }} >
       <View style={{
         padding: 15,
@@ -191,7 +169,7 @@ const Whereusers = () => {
             style={styles.devicetext}>
             By Device
           </Text>
-          <Graph2 />
+          {/* <Graph2 /> */}
         </View>
         <View style={styles.counrtyview}>
           <Text

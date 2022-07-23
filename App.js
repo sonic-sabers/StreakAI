@@ -1,13 +1,15 @@
-
-
-
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { View, Text,LogBox } from 'react-native';
+import { NavigationContainer,DrawerActions } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import {Homescreen,Dashboard }from './src/screens';
+
 const screenOptionStyle = {
   headerShown: false,
 };
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+]);
 
 
 const Drawer = createDrawerNavigator();
